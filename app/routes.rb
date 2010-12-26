@@ -31,7 +31,18 @@ end
 
 get '/about/?'	do haml :about end
 
-#get '/list/'
+get '/list/:type/?' do
+
+end
+
+get '/list/:type/:library/?' do
+
+end
+
+get '/book/:id/?' do
+	@data = create_controller('Book').home
+	haml :'books/index'
+end
 
 #get '/:controller/:action/*' do | c, a, param |
 #	controller = create_controller(c)

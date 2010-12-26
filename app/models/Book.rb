@@ -1,12 +1,13 @@
 class Model_Book
 
-	def Model_Book.get_books
+	def get_books
+		puts 'getting all books'
 		libraries = Array.new
 		Dir.entries(settings.folder).each do |dir|
 			libraries << dir unless dir.chars.next == '.'
 		end
 
-		@@books = Array.new
+		@books = Array.new
 		libraries.each do |lib|
 			Dir.entries(File.join settings.folder, lib).each do |file|
 				file = File.join settings.folder, lib, file
@@ -19,43 +20,41 @@ class Model_Book
 							'read_when' => data['redd_when'],
 						})
 
-					@@books << data
+					@books << data
 				end
 			end
 		end
 
-		@@books
+		@books
 	end
 
-	def Model_Book.get_recent
-		get_books unless instance_variable_defined?(:@books)
-	end
+	def get_wishlist
+		get_books unless instance_variable_defined? :@books
+		return @wishlist if instance_variable_defined? :@wishlist
+		puts 'getting wishlist'
 
-	def Model_Book.get_wishlist
-		get_books unless class_variable_defined? :@@books
-		return @@wishlist if class_variable_defined? :@@wishlist
-
-		@@wishlist = Array.new
-		@@books.each do |book|
-			@@wishlist << book if !book['own'] and book['want']
+		@wishlist = Array.new
+		@books.each do |book|
+			@wishlist << book if !book['own'] and book['want']
 		end
 
-		@@wishlist
+		@wishlist
 	end
 
-	def Model_Book.get_read
-		get_books unless class_variable_defined? :@@books
-		return @@read if class_variable_defined? :@@read
+	def get_read
+		get_books unless instance_variable_defined? :@books
+		return @read if instance_variable_defined? :@read
+		puts 'getting reading'
 
-		@@read = Array.new
-		@@books.each do |book|
-			@@read << book if book['read']
+		@read = Array.new
+		@books.each do |book|
+			@read << book if book['read']
 		end
 
-		@@read
+		@read
 	end
 
-	def Model_Book.get_summary
+	def get_summary
 		{
 			:all => get_books,
 			:wishlist => get_wishlist,

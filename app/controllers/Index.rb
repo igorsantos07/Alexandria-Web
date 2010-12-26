@@ -2,6 +2,6 @@ class Index
 
 	def home
 		require 'models/Book'
-		Model_Book.get_summary
+		Model_Book.new.get_summary
 	end
 end

@@ -21,24 +21,24 @@
 				%h3<
 					%a{:href => '/list/table'} Recent Books
 				%ol
-					- livros[:recent].each do |book|
+					- (1..5).each do |i|
 						%li
-							%a{:href => "/book/#{book[:isbn].to_s}"}> #{book[:title]}
+							%a{:href => "/book/#{livros[:all][i]['id'].to_s}"}> #{livros[:all][i]['title']}
 
 			#wishlist
 				%h3<
 					%a{:href => '/list/table/whislist'} Recent Whishlist
 				%ol
-					- livros[:wishlist].each do |book|
+					- (1..5).each do |i|
 						%li
-							%a{:href => "/book/#{book[:isbn].to_s}"}> #{book[:title]}
+							%a{:href => "/book/#{livros[:wishlist][i]['id'].to_s}"}> #{livros[:wishlist][i]['title']}
 
 			#read
 				%h3<
 					%a{:href => '/list/table/read'} Books to Read
 				%ol
-					- livros[:read].each do |book|
+					- (1..5).each do |i|
 						%li
-							%a{:href => "/book/#{book[:isbn].to_s}"}> #{book[:title]}
+							%a{:href => "/book/#{livros[:read][i]['id'].to_s}"}> #{livros[:read][i]['title']}
 
 			%br(clear='all')

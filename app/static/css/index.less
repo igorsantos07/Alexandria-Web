@@ -1,0 +1,26 @@
+#lists {
+	margin: 0px 5%;
+
+	#recents, #wishlist, #read {
+		float: left;
+		width: 30%;
+		height: 300px;
+		margin-top: 30px;
+		padding: 0px 10px;
+		text-align: center;
+
+		ol {
+			text-align: left;
+			margin-top: 0px;
+			display: inline-block;
+			list-style-type: upper-roman;
+			font: 14px sans-serif;
+		}
+	}
+
+	#recents, #wishlist { border-right: 1px solid black; }
+
+	#recents h3 a	{ color: darkGreen; }
+	#wishlist h3 a	{ color: goldenrod; }
+	#read h3 a		{ color: crimson; }
+}

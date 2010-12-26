@@ -1,0 +1,44 @@
+- livros = @data
+
+!!! 5
+%html
+	%head
+		%title About
+		%meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}/
+		%link{:rel => "stylesheet", :type => "text/css", :href => css('styles')}/
+		%link{:rel => "stylesheet", :type => "text/css", :href => css('index')}/
+
+	%body
+		#{header('Home')}
+
+		#menu
+			%a{:href => '/list/table'} Table list
+			|
+			%a{:href => '/list/thumbnails'} Thumbnails list
+
+		#lists
+			#recents
+				%h3<
+					%a{:href => '/list/table'} Recent Books
+				%ol
+					- livros[:recent].each do |book|
+						%li
+							%a{:href => "/book/#{book[:isbn].to_s}"}> #{book[:title]}
+
+			#wishlist
+				%h3<
+					%a{:href => '/list/table/whislist'} Recent Whishlist
+				%ol
+					- livros[:wishlist].each do |book|
+						%li
+							%a{:href => "/book/#{book[:isbn].to_s}"}> #{book[:title]}
+
+			#read
+				%h3<
+					%a{:href => '/list/table/read'} Books to Read
+				%ol
+					- livros[:read].each do |book|
+						%li
+							%a{:href => "/book/#{book[:isbn].to_s}"}> #{book[:title]}
+
+			%br(clear='all')

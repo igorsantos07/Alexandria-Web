@@ -1,6 +1,6 @@
 class Model_Book
 
-	def get_books
+	def get_all_books
 		libraries = Array.new
 		Dir.entries(settings.folder).each do |dir|
 			libraries << dir unless dir.chars.next == '.'
@@ -8,7 +8,7 @@ class Model_Book
 
 		@books = Array.new
 		libraries.each do |lib|
-			Dir.entries(File.join settings.folder, lib).each do |file|
+			Dir.entries(File.join(settings.folder, lib)).each do |file|
 				file = File.join settings.folder, lib, file
 				if File.extname(file) == '.yaml'
 					data = YAML.load_file(file).ivars
@@ -17,6 +17,7 @@ class Model_Book
 							'id' => data['saved_ident'],
 							'read' => data['redd'],
 							'read_when' => data['redd_when'],
+              'library' => lib
 						})
 
 					@books << data
@@ -27,8 +28,8 @@ class Model_Book
 		@books
 	end
 
-	def get_wishlist
-		get_books unless instance_variable_defined? :@books
+	def get_all_wishlist
+		get_all_books unless instance_variable_defined? :@books
 		return @wishlist if instance_variable_defined? :@wishlist
 
 		@wishlist = Array.new
@@ -39,8 +40,8 @@ class Model_Book
 		@wishlist
 	end
 
-	def get_read
-		get_books unless instance_variable_defined? :@books
+	def get_all_read
+		get_all_books unless instance_variable_defined? :@books
 		return @read if instance_variable_defined? :@read
 
 		@read = Array.new
@@ -53,10 +54,14 @@ class Model_Book
 
 	def get_summary
 		{
-			:all => get_books,
-			:wishlist => get_wishlist,
-			:read => get_read
+			:all => get_all_books,
+			:wishlist => get_all_wishlist,
+			:read => get_all_read
 		}
 	end
+
+  def get_data id
+
+  end
 
 end

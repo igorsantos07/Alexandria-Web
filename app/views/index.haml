@@ -17,23 +17,20 @@
           %a{:href => '/list/table'} Recent Books
         %ol
           - (1..5).each do |i|
-            %li
-              %a{:href => "/book/#{livros[:all][i]['id'].to_s}"}> #{livros[:all][i]['title']}
+            %li #{book_link(livros[:all][i])}
 
       #wishlist
         %h3<
           %a{:href => '/list/table/whislist'} Recent Whishlist
         %ol
           - (1..5).each do |i|
-            %li
-              %a{:href => "/book/#{livros[:wishlist][i]['id'].to_s}"}> #{livros[:wishlist][i]['title']}
+            %li #{book_link(livros[:wishlist][i])}
 
       #read
         %h3<
           %a{:href => '/list/table/read'} Books to Read
         %ol
           - (1..5).each do |i|
-            %li
-              %a{:href => "/book/#{livros[:read][i]['id'].to_s}"}> #{livros[:read][i]['title']}
+            %li #{book_link(livros[:read][i])}
 
       %br.clear

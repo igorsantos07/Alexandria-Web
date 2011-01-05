@@ -23,4 +23,8 @@ helpers do
   |
   %a{:href => '/list/thumbnails'} Thumbnails list"
 	end
+
+  def book_link book
+    haml "%a{:href => '/book/#{book['library']}/#{book['id'].to_s}'}> #{book['title']}"
+  end
 end

@@ -1,0 +1,51 @@
+!!! 5
+%html
+  %head
+    %title Details about "#{@data['title']}"
+    %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => css('styles')}
+    %link{:rel => "stylesheet", :type => "text/css", :href => css('book')}
+
+  %body
+    #{header('Book details')}
+
+    #container
+      #cover
+        - if @data['cover?']
+          %img{:src => @data['cover']}
+        - else
+          %img{:src => '/img/no_cover.jpg'}
+
+      %table#details
+        %tr
+          %th ISBN
+          %td= @data['isbn'] || '---'
+        %tr
+          %th Title
+          %td= @data['title']
+        %tr
+          %th Author
+          %td= @data['author']
+        %tr
+          %th Editora
+          %td= @data['editor']
+        %tr
+          %th Publicação
+          %td= @data['year']
+        %tr
+          %th Edição
+          %td= @data['edition']
+        %tr
+          %th Tags
+          %td= @data['tags']
+        %tr
+          %td(colspan=2)
+            %table#other_data
+              %tr
+                %th{:class => (eval(@data['own'])? 'own' : 'no-own')}= (eval(@data['own'])? 'Tenho' : 'Não tenho')
+                %th{:class => (eval(@data['want'])? 'wish' : 'no-wish')}= (eval(@data['want'])? 'Wishlist' : 'Não quero')
+                %th{:class => (eval(@data['read'])? 'read' : 'no-read')}= (eval(@data['read'])? 'A ler' : 'Lido')
+              %tr
+                %td(colspan=3)= ('<img src="/img/star.png" />' * @data['rating'] + '<img src="/img/star_no.png" />' * (5-@data['rating']))
+
+      %br(clear='all')

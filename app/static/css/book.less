@@ -1,0 +1,37 @@
+#container {
+	margin: 50px auto;
+	width: 700px;
+
+	#cover {
+		float: left;
+		img { max-width: 350px; }
+	}
+	#details {
+		float: left;
+		margin-left: 50px;
+		max-width: 350px;
+
+		th {
+			text-align: right;
+			border-right: 1px solid black;
+		}
+		td, th {
+			padding: 5px 10px;
+			border-bottom: 1px solid black;
+		}
+		#other_data {
+			width: 100%;
+			th, td {
+				text-align: center;
+				border-width: 0px;
+			}
+			.own, .no-own, .wish, .no-wish, .read, .no-read { width: 33%; }
+			.own { color: darkGreen; }
+			.no-own { color: crimson; }
+			.wish { color: goldenrod; }
+			.no-wish { color: inherit; }
+			.read { color: goldenrod; }
+			.no-read { color: darkGreen; }
+		}
+	}
+}

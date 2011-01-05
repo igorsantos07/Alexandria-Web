@@ -1,7 +1,6 @@
 class Model_Book
 
 	def get_books
-		puts 'getting all books'
 		libraries = Array.new
 		Dir.entries(settings.folder).each do |dir|
 			libraries << dir unless dir.chars.next == '.'
@@ -31,7 +30,6 @@ class Model_Book
 	def get_wishlist
 		get_books unless instance_variable_defined? :@books
 		return @wishlist if instance_variable_defined? :@wishlist
-		puts 'getting wishlist'
 
 		@wishlist = Array.new
 		@books.each do |book|
@@ -44,7 +42,6 @@ class Model_Book
 	def get_read
 		get_books unless instance_variable_defined? :@books
 		return @read if instance_variable_defined? :@read
-		puts 'getting reading'
 
 		@read = Array.new
 		@books.each do |book|

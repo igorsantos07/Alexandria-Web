@@ -5,5 +5,5 @@ set({
 })
 
 configure do |app|
-	app.also_reload 'controllers/*.rb', 'models/*.rb'
+	app.also_reload 'controllers/*.rb', 'models/*.rb', '*.rb'
 end

@@ -60,8 +60,4 @@ class Model_Book
 		}
 	end
 
-  def get_data id
-
-  end
-
 end

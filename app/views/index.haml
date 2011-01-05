@@ -2,38 +2,38 @@
 
 !!! 5
 %html
-	%head
-		%title Alexandria Web - Home
-		%meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}/
-		%link{:rel => "stylesheet", :type => "text/css", :href => css('styles')}/
-		%link{:rel => "stylesheet", :type => "text/css", :href => css('index')}/
+  %head
+    %title Alexandria Web - Home
+    %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => css('styles')}
+    %link{:rel => "stylesheet", :type => "text/css", :href => css('index')}
 
-	%body
-		#{header('Home')}
+  %body
+    #{header('Home')}
 
-		#lists
-			#recents
-				%h3<
-					%a{:href => '/list/table'} Recent Books
-				%ol
-					- (1..5).each do |i|
-						%li
-							%a{:href => "/book/#{livros[:all][i]['id'].to_s}"}> #{livros[:all][i]['title']}
+    #lists
+      #recents
+        %h3<
+          %a{:href => '/list/table'} Recent Books
+        %ol
+          - (1..5).each do |i|
+            %li
+              %a{:href => "/book/#{livros[:all][i]['id'].to_s}"}> #{livros[:all][i]['title']}
 
-			#wishlist
-				%h3<
-					%a{:href => '/list/table/whislist'} Recent Whishlist
-				%ol
-					- (1..5).each do |i|
-						%li
-							%a{:href => "/book/#{livros[:wishlist][i]['id'].to_s}"}> #{livros[:wishlist][i]['title']}
+      #wishlist
+        %h3<
+          %a{:href => '/list/table/whislist'} Recent Whishlist
+        %ol
+          - (1..5).each do |i|
+            %li
+              %a{:href => "/book/#{livros[:wishlist][i]['id'].to_s}"}> #{livros[:wishlist][i]['title']}
 
-			#read
-				%h3<
-					%a{:href => '/list/table/read'} Books to Read
-				%ol
-					- (1..5).each do |i|
-						%li
-							%a{:href => "/book/#{livros[:read][i]['id'].to_s}"}> #{livros[:read][i]['title']}
+      #read
+        %h3<
+          %a{:href => '/list/table/read'} Books to Read
+        %ol
+          - (1..5).each do |i|
+            %li
+              %a{:href => "/book/#{livros[:read][i]['id'].to_s}"}> #{livros[:read][i]['title']}
 
-			%br(clear='all')
+      %br.clear

@@ -15,8 +15,12 @@ helpers do
 
 	def header subtitle
 			haml '%h1
-	%img{:src => "/img/icon.jpg", :align => "top"}/
-	%a{:href => "/"} Alexandria Web
-%h2 '+subtitle
+  %img{:src => "/img/icon.jpg", :align => "top"}/
+  %a{:href => "/"} Alexandria Web
+%h2 '+subtitle+"
+#menu
+  %a{:href => '/list/table'} Table list
+  |
+  %a{:href => '/list/thumbnails'} Thumbnails list"
 	end
 end

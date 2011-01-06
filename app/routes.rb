@@ -39,8 +39,8 @@ get '/list/:type/:library/?' do
 
 end
 
-get '/book/:id/?' do
-	@data = create_controller('Book').home
+get '/book/:library/:id/?' do
+	@data = create_controller('Book').home params[:library], params[:id]
 	haml :'books/index'
 end
 

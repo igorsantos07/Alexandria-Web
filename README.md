@@ -1,9 +1,9 @@
 Install
 =======
 
-`$ sudo gem install sinatra less haml  
-$ cd www/alexandria  
-$ ./alexandria`
+`$ sudo gem install sinatra less haml`  
+`$ cd www/alexandria`  
+`$ ./alexandria`
 
 
 To run Alexandria Web on a lighter server, install Thin:

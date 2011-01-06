@@ -1,13 +1,12 @@
 Install
 =======
 
-$ sudo gem install sinatra less haml
-$ cd www/alexandria/app
-$ ruby -rubygems app.rb
+`$ sudo gem install sinatra less haml  
+$ cd www/alexandria  
+$ ./alexandria`
 
 
-If you want to run Alexandria Web on a lighter server, install Thin:
---------------------------------------------------------------------
+To run Alexandria Web on a lighter server, install Thin:
+--------------------------------------------------------
 
-$ sudo apt-get install ruby1.8-dev g++
-$ sudo gem install thin
+`$ sudo apt-get install ruby1.8-dev g++ && sudo gem install thin`

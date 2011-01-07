@@ -25,13 +25,13 @@
           %td= @data['title']
         %tr
           %th Author
-          %td= @data['author']
+          %td= @data['authors']
         %tr
           %th Editora
-          %td= @data['editor']
+          %td= @data['publisher']
         %tr
           %th Publicação
-          %td= @data['year']
+          %td= @data['publishing_year']
         %tr
           %th Edição
           %td= @data['edition']
@@ -42,9 +42,9 @@
           %td(colspan=2)
             %table#other_data
               %tr
-                %th{:class => (eval(@data['own'])? 'own' : 'no-own')}= (eval(@data['own'])? 'Tenho' : 'Não tenho')
-                %th{:class => (eval(@data['want'])? 'wish' : 'no-wish')}= (eval(@data['want'])? 'Wishlist' : 'Não quero')
-                %th{:class => (eval(@data['read'])? 'read' : 'no-read')}= (eval(@data['read'])? 'A ler' : 'Lido')
+                %th{:class => (@data['own']? 'own' : 'no-own')}= (@data['own']? 'Tenho' : 'Não tenho')
+                %th{:class => (@data['want']? 'wish' : 'no-wish')}= (@data['want']? 'Wishlist' : 'Não quero')
+                %th{:class => (@data['read']? 'read' : 'no-read')}= (@data['read']? 'A ler' : 'Lido')
               %tr
                 %td(colspan=3)= ('<img src="/img/star.png" />' * @data['rating'] + '<img src="/img/star_no.png" />' * (5-@data['rating']))
 

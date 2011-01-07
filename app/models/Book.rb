@@ -10,18 +10,7 @@ class Model_Book
 		libraries.each do |lib|
 			Dir.entries(File.join(settings.folder, lib)).each do |file|
 				file = File.join settings.folder, lib, file
-				if File.extname(file) == '.yaml'
-					data = YAML.load_file(file).ivars
-					data.merge!({
-							'mtime' => File.mtime(file),
-							'id' => data['saved_ident'],
-							'read' => data['redd'],
-							'read_when' => data['redd_when'],
-              'library' => lib
-						})
-
-					@books << data
-				end
+				@books << get_data_from_yaml(file) if File.extname(file) == '.yaml'
 			end
 		end
 
@@ -61,20 +50,32 @@ class Model_Book
 	end
 
   def get_data library, id
-    {
-			'cover?' => false,
-			'cover' => 'http://farm1.static.flickr.com/226/510063218_60af5cde56.jpg',
-			'title' => 'É isso aí, man',
-      'isbn' => '515484942',
-      'author' => 'Nerdson',
-      'editor' => 'Nova Fronteira',
-      'year' => '2009',
-      'tags' => 'awesome, funny, HQ',
-      'own' => 'true',
-      'want' => 'true',
-      'read' => 'false',
-      'rating' => 4,
-		}
+    get_data_from_yaml File.join settings.folder, library, id+'.yaml'
+  end
+
+  def get_data_from_yaml file
+    data = YAML.load_file(file).ivars
+
+    path = file.split('/')
+    library = path[path.length - 2]
+    cover = file.sub('.yaml', '.cover')
+    if (data['isbn'] == nil)
+      cover.sub! library+'/', library+'/g'
+    end
+
+    data.merge!({
+        'mtime' => File.mtime(file),
+        'id' => data['saved_ident'],
+        'read' => data['redd'],
+        'read_when' => data['redd_when'],
+        'library' => library,
+        'cover' => cover,
+        'cover?' => File.file?(cover)
+      })
+
+    data.each do |k,v| puts "#{k}: #{v}\n" end
+
+    return data
   end
 
 end

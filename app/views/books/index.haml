@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title Details about "#{@data['title']}"
+    %title Details about "#{@data.title}"
     %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}
     %link{:rel => "stylesheet", :type => "text/css", :href => css('styles')}
     %link{:rel => "stylesheet", :type => "text/css", :href => css('book')}
@@ -11,41 +11,41 @@
 
     #container
       #cover
-        - if @data['cover?']
-          %img{:src => @data['cover']}
+        - if @data.cover?
+          %img{:src => @data.cover}
         - else
           %img{:src => '/img/no_cover.jpg'}
 
       %table#details
         %tr
           %th ISBN
-          %td= @data['isbn'] || '---'
+          %td= @data.isbn || '---'
         %tr
           %th Title
-          %td= @data['title']
+          %td= @data.title
         %tr
           %th Author
-          %td= @data['authors']
+          %td= @data.authors
         %tr
           %th Editora
-          %td= @data['publisher']
+          %td= @data.publisher
         %tr
           %th Publicação
-          %td= @data['publishing_year']
+          %td= @data.publishing_year
         %tr
           %th Edição
-          %td= @data['edition']
+          %td= @data.edition
         %tr
           %th Tags
-          %td= @data['tags']
+          %td= @data.tags
         %tr
           %td(colspan=2)
             %table#other_data
               %tr
-                %th{:class => (@data['own']? 'own' : 'no-own')}= (@data['own']? 'Tenho' : 'Não tenho')
-                %th{:class => (@data['want']? 'wish' : 'no-wish')}= (@data['want']? 'Wishlist' : 'Não quero')
-                %th{:class => (@data['read']? 'read' : 'no-read')}= (@data['read']? 'A ler' : 'Lido')
+                %th{:class => ((@data.own?)? 'own' : 'no-own')}= ((@data.own?)? 'Tenho' : 'Não tenho')
+                %th{:class => ((@data.want?)? 'wish' : 'no-wish')}= ((@data.want?)? 'Wishlist' : 'Não quero')
+                %th{:class => ((@data.redd?)? 'read' : 'no-read')}= ((@data.redd?)? 'A ler' : 'Lido')
               %tr
-                %td(colspan=3)= ('<img src="/img/star.png" />' * @data['rating'] + '<img src="/img/star_no.png" />' * (5-@data['rating']))
+                %td(colspan=3)= ('<img src="/img/star.png" />' * @data.rating + '<img src="/img/star_no.png" />' * (5-@data.rating))
 
       %br(clear='all')

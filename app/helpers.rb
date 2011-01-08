@@ -25,6 +25,6 @@ helpers do
 	end
 
   def book_link book
-    haml "%a{:href => '/book/#{book['library']}/#{book['id'].to_s}'}> #{book['title']}"
+    haml "%a{:href => '/book/#{book.library}/#{book.ident.to_s}'}> #{book.title}"
   end
 end

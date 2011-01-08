@@ -22,11 +22,12 @@ get '/css/*.css' do | file |
 	less eval(":'css/#{file}'")
 end
 
-get '/cover/:library/:id' do
-  if params[:id].to_i < 0 then params[:id] = 'g'+params[:id] end
-
-  file = File.join settings.folder, params[:library], params[:id]+'.cover'
-  file if File.file? file
+get '/cover/:library/:name' do
+  file = File.join settings.folder, params[:library], params[:name]
+  return unless File.exists? file
+  
+  response['content-type'] = Alexandria::Library.jpeg?(file)? 'image/jpeg' : 'image/gif';
+  File.new file
 end
 
 ##### "REAL" ROUTES #####
@@ -46,8 +47,8 @@ get '/list/:type/:library/?' do
 
 end
 
-get '/book/:library/:id/?' do
-	@data = create_controller('Book').home params[:library], params[:id]
+get '/book/:library/:ident/?' do
+	@data = create_controller('Book').home params[:library], params[:ident]
 	haml :'books/index'
 end
 

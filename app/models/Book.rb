@@ -1,3 +1,21 @@
+class Alexandria::Book
+  attr_reader :cover, :web_cover
+
+  def cover
+    lib = Alexandria::Library::load(@library)
+    lib.cover(self)
+  end
+
+  def cover?
+    File.exists? cover
+  end
+
+  def web_cover
+    path = cover.split '/'
+    '/cover/'+library+'/'+path[path.length-1]
+  end
+end
+
 class Model_Book
 
 	def get_all_books
@@ -7,12 +25,7 @@ class Model_Book
 		end
 
 		@books = Array.new
-		libraries.each do |lib|
-			Dir.entries(File.join(settings.folder, lib)).each do |file|
-				file = File.join settings.folder, lib, file
-				@books << get_data_from_yaml(file) if File.extname(file) == '.yaml'
-			end
-		end
+		libraries.each { |lib| Alexandria::Library::load(lib).each { |book| @books << book } }
 
 		@books
 	end
@@ -23,7 +36,7 @@ class Model_Book
 
 		@wishlist = Array.new
 		@books.each do |book|
-			@wishlist << book if !book['own'] and book['want']
+			@wishlist << book if !book.own? and book.want?
 		end
 
 		@wishlist
@@ -35,7 +48,7 @@ class Model_Book
 
 		@read = Array.new
 		@books.each do |book|
-			@read << book if book['read']
+			@read << book if book.redd?
 		end
 
 		@read
@@ -50,35 +63,10 @@ class Model_Book
 	end
 
   def get_data library, id
-    get_data_from_yaml File.join settings.folder, library, id+'.yaml'
-  end
+    book = YAML.load_file File.join settings.folder, library, id+'.yaml'
+    book.library = library
 
-  def get_data_from_yaml file
-    data = YAML.load_file(file).ivars
-
-    path = file.split('/')
-    library = path[path.length - 2]
-    cover = file.sub('.yaml', '.cover')
-    if (data['isbn'] == nil)
-      cover.sub! library+'/', library+'/g'
-      cover_web = '/cover/'+library+'/g'+data['saved_ident']
-    else
-      cover_web = '/cover/'+library+'/'+data['saved_ident']
-    end
-
-    data.merge!({
-        'mtime' => File.mtime(file),
-        'id' => data['saved_ident'],
-        'read' => data['redd'],
-        'read_when' => data['redd_when'],
-        'library' => library,
-        'cover' => cover_web,
-        'cover?' => File.file?(cover)
-      })
-
-#    data.each do |k,v| puts "#{k}: #{v}\n" end
-
-    return data
+    return book
   end
 
 end

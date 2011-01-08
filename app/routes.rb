@@ -22,6 +22,13 @@ get '/css/*.css' do | file |
 	less eval(":'css/#{file}'")
 end
 
+get '/cover/:library/:id' do
+  if params[:id].to_i < 0 then params[:id] = 'g'+params[:id] end
+
+  file = File.join settings.folder, params[:library], params[:id]+'.cover'
+  file if File.file? file
+end
+
 ##### "REAL" ROUTES #####
 
 get '/' do

@@ -61,6 +61,9 @@ class Model_Book
     cover = file.sub('.yaml', '.cover')
     if (data['isbn'] == nil)
       cover.sub! library+'/', library+'/g'
+      cover_web = '/cover/'+library+'/g'+data['saved_ident']
+    else
+      cover_web = '/cover/'+library+'/'+data['saved_ident']
     end
 
     data.merge!({
@@ -69,11 +72,11 @@ class Model_Book
         'read' => data['redd'],
         'read_when' => data['redd_when'],
         'library' => library,
-        'cover' => cover,
+        'cover' => cover_web,
         'cover?' => File.file?(cover)
       })
 
-    data.each do |k,v| puts "#{k}: #{v}\n" end
+#    data.each do |k,v| puts "#{k}: #{v}\n" end
 
     return data
   end

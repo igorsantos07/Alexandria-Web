@@ -25,7 +25,7 @@ end
 get '/cover/:library/:name' do
   file = File.join settings.folder, params[:library], params[:name]
   return unless File.exists? file
-  
+
   response['content-type'] = Alexandria::Library.jpeg?(file)? 'image/jpeg' : 'image/gif';
   File.new file
 end
@@ -40,11 +40,15 @@ end
 get '/about/?'	do haml :about end
 
 get '/list/:type/?' do
-
+  listing = create_controller('List')
+  @data = eval('listing.'+params[:type])
+  haml ('lists/'+params[:type]).to_sym
 end
 
 get '/list/:type/:library/?' do
-
+  listing = create_controller('List')
+  @data = eval('listing.'+params[:type]+" '"+params[:library]+"'")
+  haml ('lists/'+params[:type]).to_sym
 end
 
 get '/book/:library/:ident/?' do

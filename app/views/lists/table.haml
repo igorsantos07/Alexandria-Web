@@ -4,26 +4,28 @@
         %title Alexandria Web - #{@data[:title]}
         %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}
         %link{:rel => "stylesheet", :type => "text/css", :href => css('styles')}
-        %link{:rel => "stylesheet", :type => "text/css", :href => css('index')}
+        %link{:rel => "stylesheet", :type => "text/css", :href => css('lists')}
 
         %body
             #{header('Home')}
 
             %table#list{:border=>1}
-                %tr
-                    %th ISBN
-                    %th Title
-                    %th Author(s)
-                    %th Publisher
-                    %th Year
-                    %th Edition
-                    %th Notes
-                - @data[:books].each do |book|
+                %thead
                     %tr
-                        %td #{book.isbn}
-                        %td #{book.title}
-                        %td #{book.authors}
-                        %td #{book.publisher}
-                        %td #{book.publishing_year}
-                        %td #{book.edition}
-                        %td #{book.notes}
+                        %th ISBN
+                        %th Title
+                        %th Author(s)
+                        %th Publisher
+                        %th Year
+                        %th Edition
+                        %th Notes
+                %tbody
+                    - @data[:books].each do |book|
+                        %tr
+                            %td.number #{book.isbn}
+                            %td #{book.title}
+                            %td #{book.authors}
+                            %td #{book.publisher}
+                            %td.number #{book.publishing_year}
+                            %td.number #{book.edition}
+                            %td.notes #{book.notes}

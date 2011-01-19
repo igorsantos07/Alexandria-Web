@@ -1,0 +1,39 @@
+@brown: #48433B;
+@lightBrown: #58534B;
+@beige: #D8CFBD;
+@lightBeige: #E9E0CF;
+@size: 12px;
+
+#list {
+    margin-top: 20px;
+}
+
+table#list {
+    font-size: @size;
+    font-family: sans-serif;
+
+    border-width: 0px;
+    border-spacing: 3px;
+    td, th {
+        border-style: solid;
+        border-color: @brown;
+        border-width: 0px 1px 1px 0px;
+        padding: 2px 8px;
+    }
+
+    thead {
+        th {
+            color: @lightBeige;
+            background-color: @brown;
+        }
+    }
+
+    tbody {
+        .number {
+            text-align: center;
+        }
+        .notes {
+            font-size: @size - 1px;
+        }
+    }
+}

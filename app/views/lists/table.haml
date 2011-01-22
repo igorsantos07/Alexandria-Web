@@ -5,6 +5,16 @@
         %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}
         %link{:rel => "stylesheet", :type => "text/css", :href => css('styles')}
         %link{:rel => "stylesheet", :type => "text/css", :href => css('lists')}
+        %script{:type => "text/javascript", :src => js('jquery-1.4.2.min')}
+        %script{:type => "text/javascript", :src => js('jquery.dataTables.min')}
+        :javascript
+            $(document).ready(function() {
+                $('#list').dataTable({
+                    'bStateSave': true,
+                    'asStripClasses': ['odd','even'],
+                    'sPaginationType': 'full_numbers'
+                })
+            })
 
         %body
             #{header('Home')}

@@ -9,13 +9,37 @@
 }
 
 /************************* TABLE LIST *************************/
+#table_controls_top, #table_controls_bottom {
+        font-size: 12px;
+}
+
 #table_controls_top div {
         display: inline-block;
         text-align: center;
         width: 33%;
 }
-#table_controls_bottom div {
-    text-align: center;
+#table_controls_bottom {
+    margin-bottom: 10px;
+    div {
+        text-align: center;
+    }
+}
+
+#list_paginate {
+    .paginate_button, .paginate_active {
+        border-left: 1px solid @brown;
+        padding: 2px 9px;
+    }
+    .paginate_active {
+        font-weight: bold;
+    }
+    .paginate_button {
+        cursor: pointer;
+        :hover {
+            background-color: @lightBeige;
+        }
+    }
+    .first { border-left-width: 0px; }
 }
 
 table#list {

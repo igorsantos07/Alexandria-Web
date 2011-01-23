@@ -12,30 +12,33 @@
                 $('#list').dataTable({
                     'bStateSave': true,
                     'asStripClasses': ['odd','even'],
-                    'sPaginationType': 'full_numbers'
+                    'sPaginationType': 'full_numbers',
+                    'sDom': '<"#table_controls_top"flp>t<"#table_controls_bottom"i>'
                 })
             })
 
         %body
             #{header('Home')}
 
-            %table#list{:border=>1}
-                %thead
-                    %tr
-                        %th ISBN
-                        %th Title
-                        %th Author(s)
-                        %th Publisher
-                        %th Year
-                        %th Edition
-                        %th Notes
-                %tbody
-                    - @data[:books].each do |book|
+            #content
+
+                %table#list{:border=>1}
+                    %thead
                         %tr
-                            %td.number #{book.isbn}
-                            %td #{book.title}
-                            %td #{book.authors}
-                            %td #{book.publisher}
-                            %td.number #{book.publishing_year}
-                            %td.number #{book.edition}
-                            %td.notes #{book.notes}
+                            %th.isbn ISBN
+                            %th.title Title
+                            %th.authors Author(s)
+                            %th.publisher Publisher
+                            %th.year Year
+                            %th.edition Edition
+                            %th.notes Notes
+                    %tbody
+                        - @data[:books].each do |book|
+                            %tr
+                                %td.number.isbn #{book.isbn}
+                                %td.title #{book.title}
+                                %td.authors #{book.authors.join ";<br />"}
+                                %td.publisher #{book.publisher}
+                                %td.number.year #{book.publishing_year}
+                                %td.number.edition #{book.edition}
+                                %td.notes #{book.notes}

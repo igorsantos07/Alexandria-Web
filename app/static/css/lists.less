@@ -4,13 +4,24 @@
 @lightBeige: #E9E0CF;
 @size: 12px;
 
-#list {
+#content {
     margin-top: 20px;
+}
+
+/************************* TABLE LIST *************************/
+#table_controls_top div {
+        display: inline-block;
+        text-align: center;
+        width: 33%;
+}
+#table_controls_bottom div {
+    text-align: center;
 }
 
 table#list {
     font-size: @size;
     font-family: sans-serif;
+    margin: 5px 15px;
 
     border-width: 0px;
     border-spacing: 3px;
@@ -20,6 +31,10 @@ table#list {
         border-width: 0px 1px 1px 0px;
         padding: 2px 8px;
     }
+
+    .title { width: 25%; }
+    .authors { width: 10%; }
+    .publisher { width: 10%; }
 
     thead {
         th {
@@ -35,5 +50,7 @@ table#list {
         .notes {
             font-size: @size - 1px;
         }
+        .odd { background-color: @beige; }
+        .even { background-color: @lightBeige; }
     }
 }

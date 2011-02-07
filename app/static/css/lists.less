@@ -63,8 +63,17 @@ table#list {
     thead {
         th {
             color: @lightBeige;
-            background-color: @brown;
+            background-color: @lightBrown;
         }
+        th.sorting_asc, th.sorting_desc, th.sorting {
+            background-repeat: no-repeat;
+            background-position: right center;
+            padding-right: 20px;
+        }
+        th.sorting_asc, th.sorting_desc { background-color: @brown; }
+        th.sorting_asc { background-image: url(/img/datatable/sort_desc.png); }
+        th.sorting_desc { background-image: url(/img/datatable/sort_asc.png); }
+        th.sorting { background-image: url(/img/datatable/sort_both.png); }
     }
 
     tbody {
@@ -76,5 +85,35 @@ table#list {
         }
         .odd { background-color: @beige; }
         .even { background-color: @lightBeige; }
+        a { color: black; }
+    }
+}
+
+div#list {
+    .book {
+        display: inline-block;
+        border: 1px solid @lightBeige;
+        border-radius: 15px;
+        padding: 10px;
+        margin: 5px;
+        font-size: 13px;
+        width: 300px;
+        text-align: center;
+        vertical-align: top;
+
+        :hover {
+            background-color: @lightBeige;
+            box-shadow: @brown 0px 0px 15px;
+            cursor: pointer;
+        }
+
+        img.cover {
+            max-height: 200px;
+            max-width: 200px;
+            margin: 0px auto 5px auto;
+            display: block;
+        }
+
+        .title { font-weight: bold; }
     }
 }

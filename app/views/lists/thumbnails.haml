@@ -1,0 +1,27 @@
+!!! 5
+%html
+    %head
+        %title Alexandria Web - #{@data[:title]}
+        %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}
+        %link{:rel => "stylesheet", :type => "text/css", :href => css('styles')}
+        %link{:rel => "stylesheet", :type => "text/css", :href => css('lists')}
+
+        %body
+            #{header('Home')}
+
+            #content
+
+                #list
+                    - @data[:books].each do |book|
+                        .book
+                            - if book.cover?
+                                %img.cover{:src => book.web_cover}
+                            - else
+                                %img.cover{:src => '/img/no_cover.jpg'}
+                            .title #{book.title}
+                            .authors
+                                %img{:src => '/img/author.png'}
+                                #{book.authors.join "; "}
+                            .publisher
+                                %img{:src => '/img/publisher.png'}
+                                #{book.publisher}

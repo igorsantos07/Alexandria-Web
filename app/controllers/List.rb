@@ -6,14 +6,20 @@ class List
     data = {:title => 'Table listing'}
 		data[:title] << " of \"#{library}\"" unless library == nil
 
-    @books = load_library
+    @books = load_library library
 		data[:books] = @books
 
 		data
   end
 
-  def thumbnails library=''
+  def thumbnails library=nil
+    data = {:title => 'Table listing'}
+		data[:title] << " of \"#{library}\"" unless library == nil
 
+    @books = load_library library
+		data[:books] = @books
+
+		data
   end
 
 ###########

@@ -13,7 +13,7 @@ class List
   end
 
   def thumbnails library=nil
-    data = {:title => 'Table listing'}
+    data = {:title => 'Thumbnail listing'}
 		data[:title] << " of \"#{library}\"" unless library == nil
 
     @books = load_library library

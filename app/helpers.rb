@@ -6,7 +6,13 @@ helpers do
 	end
 
   def css file
-    "/css/#{file}.css?" + File.mtime(File.join(settings.public, "css", "#{file}.less")).to_i.to_s
+    if File.extname(file) == '.css'
+      web_file = file
+    else
+      web_file = file+'.css'
+      file += '.less'
+    end
+    "/css/#{web_file}?" + File.mtime(File.join(settings.public, "css", "#{file}")).to_i.to_s
   end
 
   def js file

@@ -27,24 +27,27 @@
           %th Author
           %td= @data.authors
         %tr
-          %th Editora
+          %th Publisher
           %td= @data.publisher
         %tr
-          %th Publicação
+          %th Year
           %td= @data.publishing_year
         %tr
-          %th Edição
+          %th Edition
           %td= @data.edition
         %tr
           %th Tags
-          %td= @data.tags
+          %td= @data.tags.join '; '
         %tr
           %td(colspan=2)
             %table#other_data
+              - if !@data.notes.empty?
+                %tr
+                  %td.notes(colspan=3)= @data.notes
               %tr
-                %th{:class => ((@data.own?)? 'own' : 'no-own')}= ((@data.own?)? 'Tenho' : 'Não tenho')
-                %th{:class => ((@data.want?)? 'wish' : 'no-wish')}= ((@data.want?)? 'Wishlist' : 'Não quero')
-                %th{:class => ((@data.redd?)? 'read' : 'no-read')}= ((@data.redd?)? 'A ler' : 'Lido')
+                %th{:class => ((@data.own?)? 'own' : 'no-own')}= ((@data.own?)? 'Have' : 'Don\'t have')
+                %th{:class => ((@data.want?)? 'wish' : 'no-wish')}= ((@data.want?)? 'Wishlist' : 'Don\'t want')
+                %th{:class => ((@data.redd?)? 'read' : 'no-read')}= ((@data.redd?)? 'To read' : 'Read')
               %tr
                 %td(colspan=3)= ('<img src="/img/star.png" />' * @data.rating + '<img src="/img/star_no.png" />' * (5-@data.rating))
 

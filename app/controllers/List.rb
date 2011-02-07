@@ -6,7 +6,7 @@ class List
     data = {:title => 'Table listing'}
 		data[:title] << " of \"#{library}\"" unless library == nil
 
-    @books = load_library library
+    @books = load_library library, :reduced_notes
 		data[:books] = @books
 
 		data
@@ -26,8 +26,8 @@ class List
   private #
 ###########
 
-  def load_library name=nil
-    Model_Book.new.get_all_books
+  def load_library name=nil, reduced_notes=false
+    Model_Book.new.get_all_books reduced_notes
   end
 
 end

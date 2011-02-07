@@ -21,14 +21,20 @@ end
 
 class Model_Book
 
-	def get_all_books
+	def get_all_books reduced_notes=false
 		libraries = Array.new
 		Dir.entries(settings.folder).each do |dir|
 			libraries << dir unless dir.chars.next == '.'
 		end
 
 		@books = Array.new
-		libraries.each { |lib| Alexandria::Library::load(lib).each { |book| @books << book } }
+		libraries.each do |lib|
+			Alexandria::Library::load(lib).each do |book|
+				book.notes = book.notes[0..250] << '...' if reduced_notes and !book.notes.empty? and book.notes.size > 250
+				puts book.notes
+				@books << book
+			end
+		end
 
 		@books
 	end

@@ -13,7 +13,7 @@
 
                 #list
                     - @data[:books].each do |book|
-                        .book
+                        .book{:onclick => "window.location='/book/#{book.library}/#{book.ident}'"}
                             - if book.cover?
                                 %img.cover{:src => book.web_cover}
                             - else

@@ -1,18 +1,21 @@
 class Alexandria::Book
-  attr_reader :cover, :web_cover
+  attr_reader :cover, :web_cover, :lib_obj
 
-  def cover
-    lib = Alexandria::Library::load(@library)
-    lib.cover(self)
-  end
+  @@libraries = {}
 
   def cover?
-    File.exists? cover
+    set_extended_data if @cover.nil?
+    File.exists? @cover
   end
 
-  def web_cover
-    path = cover.split '/'
-    '/cover/'+library+'/'+path[path.length-1]
+  private
+  def set_extended_data
+    @@libraries[@library] = Alexandria::Library::load(@library) if @@libraries[@library].nil?
+    @lib_obj = @@libraries[@library]
+    @cover = @lib_obj.cover self
+
+    path = @cover.split '/'
+    @web_cover = '/cover/'+@library+'/'+path[path.length-1]
   end
 end
 
@@ -62,8 +65,8 @@ class Model_Book
 		}
 	end
 
-  def get_data library, id
-    book = YAML.load_file File.join settings.folder, library, id+'.yaml'
+  def get_data library, ident
+    book = YAML.load_file File.join settings.folder, library, ident+'.yaml'
     book.library = library
 
     return book

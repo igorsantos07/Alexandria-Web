@@ -39,8 +39,8 @@ class Model_Book
 		@books
 	end
 
-	def get_all_wishlist
-		get_all_books unless instance_variable_defined? :@books
+	def get_all_wishlist reduced_notes=false
+		get_all_books reduced_notes unless instance_variable_defined? :@books
 		return @wishlist if instance_variable_defined? :@wishlist
 
 		@wishlist = Array.new
@@ -51,8 +51,8 @@ class Model_Book
 		@wishlist
 	end
 
-	def get_all_read
-		get_all_books unless instance_variable_defined? :@books
+	def get_all_read reduced_notes=false
+		get_all_books reduced_notes unless instance_variable_defined? :@books
 		return @read if instance_variable_defined? :@read
 
 		@read = Array.new

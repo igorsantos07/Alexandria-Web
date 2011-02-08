@@ -3,8 +3,14 @@
     %head
         %title Alexandria Web - #{@data[:title]}
         %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}
+        %link{:rel => "stylesheet", :type => "text/css", :href => css('jquery.tooltip.css')}
         %link{:rel => "stylesheet", :type => "text/css", :href => css('styles')}
         %link{:rel => "stylesheet", :type => "text/css", :href => css('lists')}
+        %script{:type => "text/javascript", :src => js('jquery-1.4.2.min')}
+        %script{:type => "text/javascript", :src => js('jquery.tooltip.min')}
+
+        :javascript
+            $(document).ready(function() { $('.book').tooltip() })
 
         %body
             #{header('Thumbnail listing')}
@@ -13,7 +19,7 @@
 
                 #list
                     - @data[:books].each do |book|
-                        .book{:onclick => "window.location='/book/#{book.library}/#{book.ident}'"}
+                        .book{:onclick => "window.location='/book/#{book.library}/#{book.ident}'", :title => book.notes }
                             - if book.cover?
                                 %img.cover{:src => book.web_cover}
                             - else

@@ -27,7 +27,9 @@ class List
 ###########
 
   def load_library name=nil, reduced_notes=false
-    Model_Book.new.get_all_books reduced_notes
+    case name
+      when 'wishlist' then Model_Book.new.get_all_wishlist reduced_notes
+      else Model_Book.new.get_all_books reduced_notes
+    end
   end
-
 end

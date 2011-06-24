@@ -31,7 +31,6 @@ class Model_Book
 		libraries.each do |lib|
 			Alexandria::Library::load(lib).each do |book|
 				book.notes = book.notes[0..250] << '...' if reduced_notes and !book.notes.empty? and book.notes.size > 250
-				puts book.notes
 				@books << book
 			end
 		end

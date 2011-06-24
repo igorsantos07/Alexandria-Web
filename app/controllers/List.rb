@@ -26,8 +26,11 @@ class List
   private #
 ###########
 
-  def load_library name=nil, reduced_notes=false
-    Model_Book.new.get_all_books reduced_notes
+  def load_library name=nil, reduced_notes=false, order_by='title'
+    lib = Model_Book.new.get_all_books reduced_notes
+		puts lib.class
+		lib.sort! {|a,b| eval("a.#{order_by}") <=> eval("b.#{order_by}")}
+		lib
   end
 
 end

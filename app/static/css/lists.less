@@ -115,7 +115,6 @@ div#list {
         vertical-align: top;
 
         :hover {
-            background-color: @lightBeige;
             box-shadow: @brown 0px 0px 15px;
             cursor: pointer;
         }
@@ -128,5 +127,12 @@ div#list {
         }
 
         .title { font-weight: bold; }
+    }
+    .book.own {
+        :hover { background-color: @lightBeige; }
+    }
+    .book.not-own {
+        background-color: @lightBeige;
+        :hover { background-color: white; }
     }
 }

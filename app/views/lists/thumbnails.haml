@@ -19,7 +19,7 @@
 
                 #list
                     - @data[:books].each do |book|
-                        .book{:onclick => "window.location='/book/#{book.library}/#{book.ident}'", :title => book.notes }
+                        .book{ :class => ((book.own)? 'own' : 'not-own'), :onclick => "window.location='/book/#{book.library}/#{book.ident}'", :title => book.notes }
                             - if book.cover?
                                 %img.cover{:src => book.web_cover}
                             - else
